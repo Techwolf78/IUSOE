@@ -4,7 +4,7 @@ const APPLY_CONTENT = {
   eligibilityHeading: "Eligibility Criteria – B.Tech in AI & Data Science",
   criteria: [
     {
-      text: "Passed 10+2 (HSC) with Physics, Chemistry & Mathematics (PCM) or Physics, Chemistry & Biology (PCB)",
+      text: "Passed 10+2 (HSC) with Physics, Chemistry & Mathematics (PCM) or Physics, Chemistry, Mathematics & Biology (PCMB)",
     },
     {
       text: "Minimum 45% aggregate in qualifying examination (40% for reserved categories)",
