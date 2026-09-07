@@ -71,7 +71,38 @@ const Hero = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.location.href = "/thank-you";
+    const destination = "https://indirauniversity.edu.in/thank-you";
+    let redirected = false;
+
+    const redirect = () => {
+      if (!redirected) {
+        redirected = true;
+        window.location.href = destination;
+      }
+    };
+
+    try {
+      window.dataLayer = window.dataLayer || [];
+      if (typeof window.gtag !== "function") {
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+      }
+
+      window.gtag("event", "conversion", {
+        send_to: "AW-18195766943/AT-cCOPwr7UcEJ-9teRD",
+        event_callback: redirect,
+      });
+
+      if (typeof window.fbq === "function") {
+        window.fbq("track", "Lead");
+      }
+    } catch (err) {
+      console.error("Tracking error:", err);
+    }
+
+    // Fallback to guarantee redirect even if gtag response is delayed
+    setTimeout(redirect, 400);
   };
 
   useEffect(() => {
@@ -253,6 +284,7 @@ const Hero = () => {
                 <form
                   className="space-y-2.5"
                   onSubmit={handleSubmit}
+                  action="https://indirauniversity.edu.in/thank-you"
                 >
                   <input
                     id="mobile-name"
@@ -460,6 +492,7 @@ const Hero = () => {
                   <form
                     className="space-y-4"
                     onSubmit={handleSubmit}
+                    action="https://indirauniversity.edu.in/thank-you"
                   >
                     <input
                       id="desktop-name"

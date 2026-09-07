@@ -37,19 +37,8 @@ const ThankYou = () => {
       window.fbq("track", "Lead");
     }
 
-    // Auto-redirect timer after 5 seconds
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          window.location.href = "https://indirauniversity.edu.in/";
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
+    // Immediately forward to main website thank-you page
+    window.location.replace("https://indirauniversity.edu.in/thank-you");
   }, []);
 
   return (
