@@ -13,18 +13,28 @@ const ThankYou = () => {
   const [countdown, setCountdown] = useState(5);
 
   useEffect(() => {
-    // Fire Google Tag conversion event for lead tracking
-    if (typeof window.gtag === "function") {
-      // General Lead Generation Event
-      window.gtag("event", "generate_lead", {
-        value: 1.0,
-        currency: "INR",
-      });
-      
-      // Google Ads Specific Conversion Event
-      window.gtag("event", "conversion", {
-        send_to: "AW-18195766943/lead_submission",
-      });
+    // Ensure dataLayer & gtag are available
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== "function") {
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+    }
+
+    // General Lead Generation Event
+    window.gtag("event", "generate_lead", {
+      value: 1.0,
+      currency: "INR",
+    });
+
+    // Google Ads Specific Conversion Event for Submit lead form
+    window.gtag("event", "conversion", {
+      send_to: "AW-18195766943/AT-cCOPwr7UcEJ-9teRD",
+    });
+
+    // Meta Pixel Lead Event (if initialized)
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "Lead");
     }
 
     // Auto-redirect timer after 5 seconds
